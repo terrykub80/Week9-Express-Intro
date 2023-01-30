@@ -9,6 +9,11 @@ app.get('/', (req, res) => {
     res.render('register', { username: 'terryk' });
 });
 
+// Import the function from routes module
+const initRoutes = require('./src/routes')
+// Execute the function with app as the argument
+initRoutes(app);
+
 app.listen(port, () => {
-    console.log(`Servier is listening on port ${port}`)
+    console.log(`Server is listening on port ${port}`)
 })
