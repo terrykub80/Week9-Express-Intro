@@ -7,10 +7,28 @@ const path = require('path');
 const { connectDB } = require('./src/db');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./src/graphql/schema')
+const { authenticate } = require('./src/middleware/auth')
+const cookieParser = require('cookie-parser')
 
 
 // Execute the connectDB function to connect to our database
 connectDB();
+
+// Basic Middleware
+const myLogger = function(req, res, next){
+    console.log('myLogger middleware')
+    console.log(req.path)
+    next()
+};
+
+
+// Add Cookie Parser middleware BEFORE the authenticate
+app.use(cookieParser())
+
+app.use(myLogger);
+
+// Add authentication middleware to the app
+app.use(authenticate)
 
 // Add graphql middleware to app
 app.use('/graphql', graphqlHTTP({
