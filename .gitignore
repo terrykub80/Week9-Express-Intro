@@ -1,2 +1,6 @@
 node_modules
 .env
+
+
+# Ignore locas VS Code settings
+.vscode
