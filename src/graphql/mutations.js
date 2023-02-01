@@ -32,6 +32,31 @@ const register = {
     }
 }
 
+
+const login = {
+    type: GraphQLString,
+    desciroption: "Log a user in with email and password",
+    args: {
+        email: { type: GraphQLString },
+        password: { type: GraphQLString },
+    },
+    async resolve(parent, args){
+        const user = await User.findOne({ email: args.email })
+        
+        const hashedPassword = user?.password || ""
+
+        const correctPassword = await bcrypt.compare(args.password, hashedPassword)
+        
+        if (!user || !correctPassword){
+            throw new Error("Invalid Credentials")
+        }
+
+        const token = createJwtToken(user);
+        return token
+    }
+}
+
 module.exports = {
-    register
+    register,
+    login
 }
