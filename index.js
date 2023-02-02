@@ -9,6 +9,7 @@ const { graphqlHTTP } = require('express-graphql');
 const schema = require('./src/graphql/schema')
 const { authenticate } = require('./src/middleware/auth')
 const cookieParser = require('cookie-parser')
+const { userData } = require('./src/middleware/userData')
 
 
 // Execute the connectDB function to connect to our database
@@ -29,6 +30,11 @@ app.use(myLogger);
 
 // Add authentication middleware to the app
 app.use(authenticate)
+
+
+// Add userData middleware which will add quizzes to the req.verifiedUser object
+// *****MUST BE AFTER AUTHENTIVATE MIDDLEWARE
+app.use(userData);
 
 // Add graphql middleware to app
 app.use('/graphql', graphqlHTTP({
