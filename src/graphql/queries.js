@@ -1,8 +1,8 @@
-const { GraphQLList, GraphQLID } = require('graphql');
+const { GraphQLList, GraphQLID, GraphQLString } = require('graphql');
 
-const { UserType } = require('./types');
+const { UserType, QuizType } = require('./types');
 
-const { User } = require('../models');
+const { User, Quiz } = require('../models');
 
 
 
@@ -12,7 +12,7 @@ const users = {
     resolve(parent, args){
         return User.find()
     }
-}
+};
 
 const user = {
     type: UserType,
@@ -23,8 +23,22 @@ const user = {
     resolve(parent, args){
         return User.findById(args.id)
     }
-}
+};
+
+
+const quizBySlug = {
+    type: QuizType,
+    description: 'Query quiz by its unique slug',
+    args: {
+        slug: { type: GraphQLString }
+    },
+    resolve(parent, args){
+        return Quiz.findOne({ slug: args.slug })
+    }
+};
 
 module.exports = {
-    users, user
+    users,
+    user,
+    quizBySlug,
 }

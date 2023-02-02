@@ -6,7 +6,7 @@ const { createJwtToken } = require('../util/auth');
 
 const register = {
     type: GraphQLString,
-    desciroption: 'Register a new user',
+    description: 'Register a new user',
     args: {
         username: { type: GraphQLString },
         email: { type: GraphQLString },
@@ -35,7 +35,7 @@ const register = {
 
 const login = {
     type: GraphQLString,
-    desciroption: "Log a user in with email and password",
+    description: "Log a user in with email and password",
     args: {
         email: { type: GraphQLString },
         password: { type: GraphQLString },
