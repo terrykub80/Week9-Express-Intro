@@ -1,8 +1,8 @@
-const axios = require('axios')
+const axios = require('axios');
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
     try{
-        const qyery = `
+        const query = `
             query($id: ID!){
                 submission(id:$id){
                     id
@@ -17,14 +17,14 @@ module.exports = (req, res) => {
         const { data } = await axios.post(
             process.env.GRAPHQL_endpoint,
             {
-                qyery,
+                query,
                 variables: {
                     id: req.params.id
                 }
             },
             {
                 headers: {
-                    'COntent-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 }
             }
         );
