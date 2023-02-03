@@ -1,12 +1,7 @@
 <%- include("../partials/header.ejs") %>
 
 <div class="container">
-    <!-- <div class="row">
-        <div class="col">
-            <h1 class="text-center">Hello <%= locals.user.username %></h1>
-        </div>
-    </div> -->
-    <h1 class="my-4">Quizly Dashboard</h1>
+    <h1 class="my-4">Quizly - Dashboard</h1>
     <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
         <h2>Your Quizzes</h2>
         <a href="/quiz/create" class="btn btn-primary">Create Quiz +</a>
@@ -23,7 +18,7 @@
             <% for( let quiz of user.quizzes ) { %>
                 <tr>
                     <td>
-                        <a href=""><strong><%= quiz.title %></strong></a>
+                        <a href="/quiz/<%= quiz?.slug %>"><strong><%= quiz?.title %></strong></a>
                     </td>
                     <td>3</td>
                     <td>100%</td>
@@ -32,8 +27,5 @@
         </tbody>
     </table>
 </div>
-
-
-
 
 <%- include("../partials/footer.ejs") %>

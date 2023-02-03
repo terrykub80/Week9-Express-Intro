@@ -22,14 +22,15 @@ const myLogger = function(req, res, next){
     next()
 };
 
-
-// Add Cookie Parser middleware BEFORE the authenticate
-app.use(cookieParser())
-
 app.use(myLogger);
 
+// Add Cookie Parser middleware BEFORE the authenticate
+app.use(cookieParser());
+
+
+
 // Add authentication middleware to the app
-app.use(authenticate)
+app.use(authenticate);
 
 
 // Add userData middleware which will add quizzes to the req.verifiedUser object
