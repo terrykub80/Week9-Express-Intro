@@ -22,6 +22,21 @@ const userData = async (req, res, next) => {
                             correctAnswer
                             order
                             }
+                            avgScore
+                            submissions{
+                                score
+                                userId
+                            }
+                        }
+                        submissions{
+                            id
+                            userId
+                            quizId
+                            quiz{
+                                title
+                                description
+                            }
+                            score
                         }
                     }
                 }
@@ -39,13 +54,16 @@ const userData = async (req, res, next) => {
                 }
             )
             
+
             req.verifiedUser.quizzes = data.data.user.quizzes;
+            req.verifiedUser.submissions = data.data.user.submissions;
             // console.log(req.verifiedUser);
             
             next()
         } catch(err) {
             console.log(err)
             req.verifiedUser.quizzes = [];
+            req.verifiedUser.submissions = [];
             next()
         }    
     }

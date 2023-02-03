@@ -61,18 +61,20 @@ const QuizType = new GraphQLObjectType(
                 type: GraphQLFloat,
                 async resolve(parent, args){
                     const submissions = await Submission.find({ quizId: parent.id })
+                    if (!submissions.length){
+                        return 0
+                    }
                     let score = 0;
 
                     for (const submission of submissions){
                         score += submission.score
                     }
 
-                    return score / submissions.length
+                    return score / submissions.length;
                 }
-        })
-    }
-);
-
+        }}
+        )
+    })
 
 // Create a Question Type (INPUT) for mutation of creating a quiz
 const QuestionInputType = new GraphQLInputObjectType(
