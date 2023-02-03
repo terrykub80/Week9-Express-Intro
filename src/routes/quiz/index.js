@@ -5,7 +5,8 @@ QuizDashboardRouter.route('/create')
     // .get((req, res) => {
     //     res.render('editor')
     // })
-    .get(require('./editor'));
+    .get(require('./editor'))
+    .post(require('./create'))
 
 
 
