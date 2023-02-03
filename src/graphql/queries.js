@@ -1,8 +1,8 @@
 const { GraphQLList, GraphQLID, GraphQLString } = require('graphql');
 
-const { UserType, QuizType } = require('./types');
+const { UserType, QuizType, SubmissionType } = require('./types');
 
-const { User, Quiz } = require('../models');
+const { User, Quiz, Submission } = require('../models');
 
 
 
@@ -37,8 +37,20 @@ const quizBySlug = {
     }
 };
 
+const submission = {
+    type: SubmissionType,
+    description: 'Get a submission by its ID',
+    args: {
+        id: { type: GraphQLID }
+    },
+    resolve(parent, args){
+        return Submission.findById(args.id)
+    }
+};
+
 module.exports = {
     users,
     user,
     quizBySlug,
+    submission
 }

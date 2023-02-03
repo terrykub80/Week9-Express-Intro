@@ -154,5 +154,6 @@ module.exports = {
     UserType,
     QuizType,
     QuestionInputType,
-    AnswerInputType
+    AnswerInputType,
+    SubmissionType
 };
