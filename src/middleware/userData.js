@@ -40,7 +40,7 @@ const userData = async (req, res, next) => {
             )
             
             req.verifiedUser.quizzes = data.data.user.quizzes;
-            console.log(req.verifiedUser);
+            // console.log(req.verifiedUser);
             
             next()
         } catch(err) {
