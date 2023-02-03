@@ -77,7 +77,7 @@ const QuestionType = new GraphQLObjectType(
             quiz: { 
                 type: QuizType,
                 resolve(parent, args){
-                    return Quiz.firndById(parent.quizId)
+                    return Quiz.findById(parent.quizId)
                 }
              },
 
